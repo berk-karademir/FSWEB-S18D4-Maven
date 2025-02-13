@@ -23,7 +23,6 @@ public class BurgerController {
 
     @PostMapping
     public Burger save(@RequestBody Burger burger) {
-        BurgerValidation.checkName(burger.getName());
         return burgerDao.save(burger);
     }
 
@@ -34,7 +33,6 @@ public class BurgerController {
 
     @GetMapping("/{id}")
     public Burger getById(@PathVariable Long id) {
-        BurgerValidation.checkId(id);
         return burgerDao.findById(id);
     }
 
@@ -55,7 +53,7 @@ public class BurgerController {
     }
 
     @GetMapping("/price/{price}")
-    public List<Burger> findByPrice(@PathVariable("price") Integer price){
+    public List<Burger> findByPrice(@PathVariable("price") Double price){
         return burgerDao.findByPrice(price);
     }
 
